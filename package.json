@@ -1,3 +1,4 @@
+
 {
   "name": "weather1",
   "version": "0.0.0",
@@ -15,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/l4styk/weather/issues"
   },
-  "homepage": "https://github.com/l4styk/weather"
+  "homepage": "https://github.com/l4styk/weather",
+  "dependencies": {
+    "commander": "^2.6.0"
+  }
 }

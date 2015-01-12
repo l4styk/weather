@@ -1,49 +1,26 @@
 #!/usr/bin/env node
 
-var celsius = false;
-var fahrenheit = false;
-var location = null;
 
-each(process.argv.slice(2), function(arg) {
-  switch (arg) {
-    case '-h':
-    case '--help':
-      console.log("Here's some help...");
-      process.exit(0);
-      break;
-    case '-V':
-    case '--version':
-      console.log('weather 0.1.0');
-      process.exit(0);
-      break;
-    case '-f':
-    case '--fahrenheit':
-      fahrenheit = true;
-      break;
-    case '-c':
-    case '--celsius':
-      celsius = true;
-      break;
-    default:
-      location = arg;
-      break;
-  }
-});
 
-if (!celsius && !fahrenheit) {
-  fahrenheit = true;
-}
+var program = require('commander');
 
-if (!location) {
-  location = 'Portland, OR';
-}
+program
+  .version('0.0.1')
+  .option('-h --hot ', "it's hot")
+  .option('-c, --cold', "it's cold")
+  .option('-d, --dry', "it's clear")
+  .option('-w, --wet [type]', 'Add the specified type of precipitation [rain]')
+  .parse(process.argv);
 
-console.log('The weather in %s is hopefully sunny.', location);
-if (fahrenheit) {
-  console.log('The temperature is 70 fahrenheit.');
-}
-if (celsius) {
-  console.log('The temperature is 21 Celsius.')
-}
+console.log('outside it is:');
 
-console.log(process.argv)
+
+
+
+if(program.cold && program.wet) console.log('-snowing'); 
+else if(program.hot && program.dry) console.log('-sunny');
+ else if(program.hot) console.log('  - hot');
+ else if (program.cold) console.log('  - cold');
+ else if (program.wet) console.log('  - wet');
+ else if (program.dry) console.log('-dry');
+
